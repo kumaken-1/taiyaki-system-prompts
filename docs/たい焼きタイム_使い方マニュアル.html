@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>たい焼きタイム 使い方マニュアル</title>
+  <style>
+    :root {
+      --ink: #1f2933;
+      --muted: #5c6773;
+      --line: #d8dee6;
+      --paper: #fbfaf7;
+      --panel: #ffffff;
+      --accent: #b24b34;
+      --accent-2: #1f766c;
+      --accent-3: #6750a4;
+      --soft: #f3efe7;
+      --warn: #fff4d6;
+      --ok: #e7f4ef;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, system-ui, sans-serif;
+      line-height: 1.75;
+    }
+
+    header {
+      background: #f7ead9;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 48px 0 34px;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 780px;
+      margin: 18px 0 0;
+      color: #384450;
+      font-size: 1.08rem;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 22px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 4px 12px;
+      border: 1px solid #d3bca4;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.55);
+      color: #513526;
+      font-size: 0.9rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(251,250,247,0.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(8px);
+    }
+
+    nav .inner {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 10px 0;
+    }
+
+    nav a {
+      flex: 0 0 auto;
+      padding: 7px 12px;
+      border-radius: 6px;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    nav a:hover {
+      background: var(--soft);
+    }
+
+    main {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 34px 0 64px;
+    }
+
+    section {
+      margin: 0 0 42px;
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--accent);
+      font-size: 1.55rem;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 22px 0 8px;
+      font-size: 1.15rem;
+      line-height: 1.45;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    ul,
+    ol {
+      margin: 8px 0 0;
+      padding-left: 1.45em;
+    }
+
+    li {
+      margin: 4px 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 1px 2px rgba(31,41,51,0.05);
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .note {
+      border-left: 4px solid var(--accent-2);
+      background: var(--ok);
+      padding: 14px 16px;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .warning {
+      border-left: 4px solid #c48200;
+      background: var(--warn);
+      padding: 14px 16px;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .flow {
+      counter-reset: step;
+      display: grid;
+      gap: 12px;
+    }
+
+    .step {
+      position: relative;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px 16px 16px 54px;
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 16px;
+      top: 18px;
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th,
+    td {
+      padding: 11px 12px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #efe6d8;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    code,
+    pre {
+      font-family: Consolas, "Yu Gothic", Meiryo, monospace;
+    }
+
+    pre {
+      margin: 10px 0 0;
+      padding: 14px;
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #1f2933;
+      color: #f8fafc;
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+
+    .tag {
+      display: inline-block;
+      margin: 0 6px 6px 0;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #ece8f7;
+      color: var(--accent-3);
+      font-size: 0.84rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 22px 0;
+      color: var(--muted);
+      background: #f4f0e8;
+    }
+
+    footer .inner {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 820px) {
+      .grid,
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      th {
+        white-space: normal;
+      }
+
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+
+    @media print {
+      nav {
+        position: static;
+      }
+
+      body {
+        background: #fff;
+      }
+
+      .card,
+      .step,
+      table {
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hero">
+      <p class="eyebrow">Gemカスタム指示用プロンプト群</p>
+      <h1>たい焼きタイム 使い方マニュアル</h1>
+      <p class="lead">たい焼きタイムは、先生の願い・子どもの事実・教材の事実を整理し、授業改善の次の一手を一緒に見立てるためのプロンプト連合体です。ベースで相談を受け止め、必要に応じて各ユニットへ接続します。</p>
+      <div class="meta">
+        <span class="pill">対象版: 2026-05-04版</span>
+        <span class="pill">中心版: ver.2.1G</span>
+        <span class="pill">前版比較: 2026-04-26版</span>
+      </div>
+    </div>
+  </header>
+
+  <nav aria-label="目次">
+    <div class="inner">
+      <a href="#overview">概要</a>
+      <a href="#quickstart">基本手順</a>
+      <a href="#units">ユニット一覧</a>
+      <a href="#prompts">入力例</a>
+      <a href="#upgrade">前版からの向上点</a>
+      <a href="#caution">運用上の注意</a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="overview">
+      <h2>1. たい焼きタイムでできること</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>授業相談を整理する</h3>
+          <p>先生の語りを「子どもの具体的な姿」と「先生の見取り・願い」に分け、今扱うべき授業改善上の課題を仮置きします。</p>
+        </article>
+        <article class="card">
+          <h3>授業の核をつくる</h3>
+          <p>子どもの事実と教材の事実をぶつけ、中心発問・活動構成・見取りへ進む前の「核」を合意します。</p>
+        </article>
+        <article class="card">
+          <h3>成果物へ整える</h3>
+          <p>指導案、板書案、ICT活用、写真・作品の読み取り、参加保障、探究、自由進度、生成AI活用などへ接続できます。</p>
+        </article>
+      </div>
+
+      <div class="note" style="margin-top: 18px;">
+        <strong>基本思想:</strong> AIが授業を代行するのではなく、先生の判断の精度を上げるために、事実・解釈・根拠・次の最小作業を整理します。
+      </div>
+    </section>
+
+    <section id="quickstart">
+      <h2>2. 基本手順</h2>
+      <div class="flow">
+        <div class="step">
+          <h3>まず「たい焼きタイムベース」に相談を入れる</h3>
+          <p>最初から指導案や板書へ飛ばず、ベースに状況を渡します。ベースは、事実と解釈を分け、必要なユニットを見立てます。</p>
+        </div>
+        <div class="step">
+          <h3>子どもの事実と教材の事実を足す</h3>
+          <p>「意欲が低い」「分かっていない」だけではなく、見える行動・発言・ノート・作品・教材の具体的記述を入れます。</p>
+        </div>
+        <div class="step">
+          <h3>Halt & Commitで確認する</h3>
+          <p>たい焼きタイムが「ここで合意してよいか」と止まったら、先生が採用・修正・保留を判断します。重要な核をAIだけで確定しません。</p>
+        </div>
+        <div class="step">
+          <h3>目的に合うユニットへ進む</h3>
+          <p>授業構想なら授業づくり、提出用なら指導案、黒板なら板書、支援なら参加保障や特支、資料根拠ならWeb検索へ進みます。</p>
+        </div>
+        <div class="step">
+          <h3>最後に実用形へ整える</h3>
+          <p>指導案本文、板書案、支援策、検索根拠、次に見る子どもの姿など、実際に使う形で出力します。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="units">
+      <h2>3. ユニット一覧と使い分け</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ユニット</th>
+            <th>使う場面</th>
+            <th>主な出力</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>たい焼きタイムベース</td>
+            <td>最初の相談、ユニット選び、事実と解釈の仕分け</td>
+            <td>現在の整理、初期見立て、先生への確認</td>
+          </tr>
+          <tr>
+            <td>傾聴・対話ユニット</td>
+            <td>先生の困り感や違和感を、子どもの具体的事実へ戻したいとき</td>
+            <td>願いの承認、見えている事実、確認したい問い</td>
+          </tr>
+          <tr>
+            <td>授業づくりコアユニット</td>
+            <td>授業の核、中心発問、活動構成のたたき台を作るとき</td>
+            <td>両輪のデータ確認、授業の核、展開案</td>
+          </tr>
+          <tr>
+            <td>インクルーシブ参加保障ユニット</td>
+            <td>特定の子の参加しにくさから、全員が学びの核に合流できる入口を考えるとき</td>
+            <td>バリアの仮説、入口、協働への合流策</td>
+          </tr>
+          <tr>
+            <td>探究コアユニット</td>
+            <td>子どもの粗い関心語や疑問から、問いの種を見極めたいとき</td>
+            <td>子どもの事実ロック、構造と前提、問いの候補</td>
+          </tr>
+          <tr>
+            <td>自由進度コアユニット</td>
+            <td>学習計画、進度管理、自己調整の仕組みを作りたいとき</td>
+            <td>固定する部分、委ねる部分、未完成の骨格</td>
+          </tr>
+          <tr>
+            <td>生成AI授業活用コアユニット</td>
+            <td>授業でAIを使う前に、知的格闘を奪わないか検討したいとき</td>
+            <td>AIが代替する箇所、認知負荷の検討、判断の問い</td>
+          </tr>
+          <tr>
+            <td>特支学級授業づくりユニット</td>
+            <td>パニック、拒否、離席などの事実から、スモールステップの授業を作るとき</td>
+            <td>氷山の下の仮説、自立活動の視点、できたで終わる展開</td>
+          </tr>
+          <tr>
+            <td>指導案デザインユニット</td>
+            <td>授業構想を提出用フォーマットへ清書するとき</td>
+            <td>監査欄、主眼を保持した指導案、6列展開表</td>
+          </tr>
+          <tr>
+            <td>板書デザインユニット</td>
+            <td>授業の核を黒板上でどう見せるか考えるとき</td>
+            <td>5つの板書案、配置、山場、画像化の補助</td>
+          </tr>
+          <tr>
+            <td>Web検索・ICT情報教育ユニット</td>
+            <td>最新情報、一次資料、ICT活用、情報モラル、著作権確認が必要なとき</td>
+            <td>根拠資料、実践例、リスク、授業への使い方</td>
+          </tr>
+          <tr>
+            <td>写真・作品・データ入力支援ユニット</td>
+            <td>ノート、板書、児童作品、アンケート、振り返りを読み取りたいとき</td>
+            <td>見えている事実、複数仮説、次に確認すること</td>
+          </tr>
+          <tr>
+            <td>キャラクター会議室ユニット</td>
+            <td>授業案・板書・指導案・実施後のズレを複数視点で監査したいとき</td>
+            <td>会議テーマ、ストレステスト、強みと脆弱性、選択肢</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="prompts">
+      <h2>4. 入力例</h2>
+      <div class="two-col">
+        <article class="card">
+          <h3>最初の相談</h3>
+          <pre>たい焼きタイムで相談します。
+教科: 国語
+単元: モチモチの木
+先生の願い: 豆太の変化を、ただ「勇気が出た」で終わらせたくない。
+子どもの事実: 前時の感想で「豆太は弱虫だったけど強くなった」と書いた子が多い。
+教材の事実: 夜中に一人で医者様を呼びに行くが、最後はまたじさまにしがみつく。
+作りたいもの: 本時の核と中心発問のたたき台</pre>
+        </article>
+        <article class="card">
+          <h3>参加保障の相談</h3>
+          <pre>インクルーシブ参加保障で見てください。
+授業の核: 物語の中で「変わったこと」と「変わっていないこと」を比べる。
+参加しにくい子の事実: 読み取りの場面で本文を追わず、ノートに写す作業だけを続けている。
+困っていること: 全体交流に入る前に手が止まる。
+守りたいこと: その子だけ別課題にせず、同じ問いに合流させたい。</pre>
+        </article>
+        <article class="card">
+          <h3>指導案へ清書</h3>
+          <pre>指導案デザインユニットで、提出用に整えてください。
+主眼は次の文を一字一句変えずに使ってください。
+「結果だけで成長を捉えがちな子どもたちが、豆太の行動と最後の姿を比べて読むことを通して、勇気とは性格が完全に変わることではなく、怖さを抱えたまま一歩動くことだと気付く。」
+展開案:
+導入...
+展開...
+終末...</pre>
+        </article>
+        <article class="card">
+          <h3>キャラクター会議</h3>
+          <pre>この授業案をキャラクター会議室で監査してください。
+モード: 監査モード
+見てほしい観点: 中心発問が授業の核を支えているか。45分で成立するか。
+動かしたくないもの: 授業の核
+動かしてよいもの: 発問の順序、板書の配置、ペア交流の位置</pre>
+        </article>
+      </div>
+    </section>
+
+    <section id="upgrade">
+      <h2>5. 前バージョンからの主な向上点</h2>
+      <p>今回版は、2026-04-26の前バージョン群を土台に、2026-05-04版として運用時の止まり方・安全性・出力品質を強化しています。</p>
+      <table>
+        <thead>
+          <tr>
+            <th>観点</th>
+            <th>前バージョン</th>
+            <th>今回版の向上点</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>停止判断</td>
+            <td>不足情報があっても、暫定案や成果物化へ進みやすい場面があった。</td>
+            <td>Level 1からLevel 3までのHalt Levelを明確化。核や主眼の決定では合意確認、事実不足では完全停止する。</td>
+          </tr>
+          <tr>
+            <td>トーン</td>
+            <td>「事実が弱い」など、受け取り方によっては責められているように見える表現が残りやすかった。</td>
+            <td>トーンガードを追加。厳格さは保ちつつ、先生の願いを承認し、確認の圧を下げる表現に調整。</td>
+          </tr>
+          <tr>
+            <td>授業づくり</td>
+            <td>核の合意前に、手立てや活動案へ早く進む可能性があった。</td>
+            <td>Phase 1で授業の核を合意し、Commit後のPhase 2で最小HOWを扱う二段階構造に整理。</td>
+          </tr>
+          <tr>
+            <td>参加保障</td>
+            <td>特別支援教育コアはあったが、通常学級の中で「同じ学びの核へ合流する」UD視点は別ユニットとして明確ではなかった。</td>
+            <td>インクルーシブ参加保障ユニットを追加。支援を別メニュー化せず、入口と合流策をセットで設計。</td>
+          </tr>
+          <tr>
+            <td>指導案</td>
+            <td>監査と本文清書が混ざると、提出用本文にAIの提案が入り込むリスクがあった。</td>
+            <td>主眼のMutation Guardを明文化。監査欄と提出用本文を分離し、主眼を一字一句保持する。</td>
+          </tr>
+          <tr>
+            <td>板書</td>
+            <td>板書画像化やモデル依存の扱いが運用環境に左右されやすかった。</td>
+            <td>画像生成環境ガードと特定モデル依存の排除を追加。まずテキスト5案を安定出力し、画像化は要求時に扱う。</td>
+          </tr>
+          <tr>
+            <td>Web検索</td>
+            <td>検索できない場合の扱いが曖昧になりやすかった。</td>
+            <td>検索失敗時ガードを追加。検索できた情報・できていない情報を分け、根拠の強さを明示する。</td>
+          </tr>
+          <tr>
+            <td>写真・作品・データ</td>
+            <td>画像や記録の読み取りで、読めない部分を推測で埋める危険があった。</td>
+            <td>画像判読フェイルセーフを追加。見えている事実とAIの仮説を分離し、読めない箇所を読めないまま扱う。</td>
+          </tr>
+          <tr>
+            <td>キャラクター会議</td>
+            <td>ver.0.5.1cでは会議室の枠組みはあったが、標準運用版としての制御が発展途上だった。</td>
+            <td>ver.3.1へ更新。8つの会議パターン、監査・再設計・実施後検証のモード、過剰な劇場化防止を整理。</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="warning" style="margin-top: 18px;">
+        <strong>まとめ:</strong> 今回版は「たくさん出すAI」から、「止まるべきところで止まり、先生の判断を守るAI」へ寄せた更新です。
+      </div>
+    </section>
+
+    <section id="caution">
+      <h2>6. 運用上の注意</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>個人情報を入れない</h3>
+          <p>児童名、保護者名、健康情報、成績などは入れません。必要な場合は「A児」「数名の児童」などに置き換えます。</p>
+        </article>
+        <article class="card">
+          <h3>見えた事実で書く</h3>
+          <p>「やる気がない」ではなく、「本文を追わず、ノートに写す作業だけを続けている」のように、観察できる姿で入力します。</p>
+        </article>
+        <article class="card">
+          <h3>AIの提案を採用しすぎない</h3>
+          <p>たい焼きタイムは判断材料を出す道具です。授業の核、支援の方法、提出用の文言は、最後に先生が決めます。</p>
+        </article>
+      </div>
+
+      <h3>迷ったときの合言葉</h3>
+      <p><span class="tag">まずベースへ</span><span class="tag">事実と解釈を分ける</span><span class="tag">核は合意してから</span><span class="tag">成果物は最後に整える</span></p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="inner">
+      作成日: 2026-05-04 / 参照ファイル: たい焼きタイム現行版テキスト群、前バージョンフォルダ内Markdown群
+    </div>
+  </footer>
+</body>
+</html>
